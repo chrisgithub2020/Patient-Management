@@ -507,7 +507,7 @@ transform: translateX(0);
   }  
 
   function deletePatient(event) {
-    fetch(`http://127.0.0.1:8000/delete_patient/${event.target.value}`, {
+    fetch(`https://patient-management-7d2f.onrender.com/delete_patient/${event.target.value}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -522,7 +522,7 @@ transform: translateX(0);
   }
 
   function logout(event) {
-    fetch("http://127.0.0.1:8000/logout",{
+    fetch("https://patient-management-7d2f.onrender.com/logout",{
       method: "GET", 
       headers: {
         "Content-Type": "application/json",

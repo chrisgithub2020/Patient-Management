@@ -279,7 +279,7 @@
     }
 
     function logout(event) {
-    fetch("http://127.0.0.1:8000/logout",{
+    fetch("https://patient-management-7d2f.onrender.com//logout",{
       method: "GET", 
       headers: {
         "Content-Type": "application/json",
@@ -399,7 +399,7 @@
         // lastVisit: new Date().toISOString().slice(0,10)
       };
 
-      fetch("http://127.0.0.1:8000/add_patient", {
+      fetch("https://patient-management-7d2f.onrender.com/add_patient", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
