@@ -578,7 +578,7 @@
 
     let collapsed = false;
 
-    let patients = {{recentPatients}};
+    let patients = {{recentPatients | tojson}};
 
     function openSidebar() {
       if (window.innerWidth < 900) {
