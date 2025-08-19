@@ -411,7 +411,7 @@
         return response.json()
       }).then((data)=>{
         if (data.success === true) {
-          event.currentTarget.disabled = true
+          this.disabled = true
           location.href = "/view_patients"
         }
       })
