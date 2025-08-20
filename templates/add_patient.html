@@ -267,6 +267,10 @@
     const backdrop = document.getElementById('backdrop');
     const toggleBtn = document.getElementById('toggleBtn');
     const mainContent = document.getElementById('mainContent');
+    const loader = document.getElementById('loader');
+    const toast = document.getElementById('toast');
+
+
 
     let collapsed = false;
 
@@ -356,7 +360,6 @@
     window.addEventListener('load', () => {
       applySavedTheme();
       adjustLayout();
-      const loader = document.getElementById('loader');
       setTimeout(() => {
         loader.classList.remove('active');
         setTimeout(() => { loader.style.display = 'none'; }, 500);
@@ -382,7 +385,8 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      event.currentTarget.disabled = true
+      toast.textContent = "Relax we are adding patient...⌛";
+      toast.classList.add('show');
       const data = Object.fromEntries(new FormData(form).entries());
       if (!data.name || !data.age || !data.gender || !data.phone || !data.condition) {
         alert('Please fill out all required fields.');
@@ -411,8 +415,15 @@
         return response.json()
       }).then((data)=>{
         if (data.success === true) {
-          this.disabled = true
+          toast.classList.remove('show');
           location.href = "/view_patients"
+        } else {
+          toast.classList.remove('show');
+          toast.textContent = "There was an error";
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
         }
       })
 
