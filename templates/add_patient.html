@@ -254,7 +254,7 @@
           </div>
 
           <div class="form-actions">
-            <button class="btn" type="submit">Save Patient</button>
+            <button id="save-patientBtn" class="btn" type="submit">Save Patient</button>
             <button class="btn secondary" type="reset">Clear</button>
           </div>
         </form>
@@ -383,7 +383,7 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.ariaDisabled = true
+      document.getElementById("save-patientBtn").setAttribute("disabled", "true")
       const data = Object.fromEntries(new FormData(form).entries());
       if (!data.name || !data.age || !data.gender || !data.phone || !data.condition) {
         alert('Please fill out all required fields.');
