@@ -261,14 +261,12 @@
       </section>
     </main>
   </div>
-    <div id="toast" class="toast"></div>
   <script>
     const sidebar = document.getElementById('sidebar');
     const backdrop = document.getElementById('backdrop');
     const toggleBtn = document.getElementById('toggleBtn');
     const mainContent = document.getElementById('mainContent');
     const loader = document.getElementById('loader');
-    const toast = document.getElementById('toast');
 
 
 
@@ -385,8 +383,7 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      toast.textContent = "Relax we are adding patient...⌛";
-      toast.classList.add('show');
+      form.ariaDisabled = true
       const data = Object.fromEntries(new FormData(form).entries());
       if (!data.name || !data.age || !data.gender || !data.phone || !data.condition) {
         alert('Please fill out all required fields.');
@@ -414,16 +411,11 @@
         console.log(response)
         return response.json()
       }).then((data)=>{
+        form.ariaDisabled = false
         if (data.success === true) {
-          toast.classList.remove('show');
           location.href = "/view_patients"
         } else {
-          toast.classList.remove('show');
-          toast.textContent = "There was an error";
-          toast.classList.add('show');
-          setTimeout(() => {
-            toast.classList.remove('show');
-          }, 3000);
+          alert("failed to add")
         }
       })
 
