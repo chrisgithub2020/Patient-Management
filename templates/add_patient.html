@@ -383,7 +383,8 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      document.getElementById("save-patientBtn").setAttribute("disabled", "true")
+      const saveBtn = document.getElementById("save-patientBtn")
+      saveBtn.setAttribute("disabled", "true")
       const data = Object.fromEntries(new FormData(form).entries());
       if (!data.name || !data.age || !data.gender || !data.phone || !data.condition) {
         alert('Please fill out all required fields.');
@@ -400,7 +401,6 @@
         notes: String(data.notes || '').trim(),
         // lastVisit: new Date().toISOString().slice(0,10)
       };
-
       fetch("https://patient-management-7d2f.onrender.com/add_patient", {
         method: "POST",
         headers: {
@@ -411,7 +411,7 @@
         console.log(response)
         return response.json()
       }).then((data)=>{
-        form.ariaDisabled = false
+        saveBtn.setAttribute("disabled", "false")
         if (data.success === true) {
           location.href = "/view_patients"
         } else {
